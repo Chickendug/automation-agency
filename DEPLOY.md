@@ -107,6 +107,16 @@ Webhook URL: `https://YOUR-PROJECT.vercel.app/api/payments/webhook`
 | Build fails on Vercel | Check `DATABASE_URL` is set before deploy |
 | Google find leads fails | Add API key in Vercel env, redeploy |
 | Old localhost data missing | Re-import or re-scan leads on live site (local SQLite ≠ cloud) |
+| **404 on `/docs/*.md`** | Use `/guides/appointment-reminders` instead |
+| **401 / login wall on Vercel URL** | Settings → Deployment Protection → set **Production** to **Off** (or "Only Preview"), then redeploy |
+
+---
+
+## Build guides (in app)
+
+After deploy: `/guides/appointment-reminders` · `/guides/deposit-hold` · `/guides/missed-call-recovery`
+
+Local dev: `http://localhost:3000/guides/appointment-reminders`
 
 ---
 

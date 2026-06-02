@@ -96,4 +96,4 @@ Deposit add-on: [yes/no]
 Notes: [anything weird]
 ```
 
-Build guide: `/docs/appointment-reminders-build.md`
+Build guide: `/guides/appointment-reminders`

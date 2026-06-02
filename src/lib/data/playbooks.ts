@@ -15,7 +15,7 @@ export const PLAYBOOKS: Playbook[] = [
     title: "Deliver: Missed Call Recovery System",
     packageId: "missed-call-recovery",
     estimatedHours: 6,
-    buildGuidePath: "/docs/missed-call-recovery-build.md",
+    buildGuidePath: "/guides/missed-call-recovery",
     steps: [
       {
         title: "Kickoff (30 min)",
@@ -124,8 +124,8 @@ export const PLAYBOOKS: Playbook[] = [
     title: "Deliver: Appointment Reminder System",
     packageId: "appointment-reminders",
     estimatedHours: 5,
-    buildGuidePath: "/docs/appointment-reminders-build.md",
-    addonGuidePath: "/docs/deposit-hold-addon.md",
+    buildGuidePath: "/guides/appointment-reminders",
+    addonGuidePath: "/guides/deposit-hold",
     steps: [
       {
         title: "Calendar connect",

@@ -110,14 +110,19 @@ export default function ToolkitPage() {
             </Link>
           </li>
           <li>
-            <a href="/docs/appointment-reminders-build.md" className="text-emerald-400 hover:underline">
+            <Link href="/guides/appointment-reminders" className="text-emerald-400 hover:underline">
               Appointment build guide (full) →
-            </a>
+            </Link>
           </li>
           <li>
-            <a href="/docs/deposit-hold-addon.md" className="text-emerald-400 hover:underline">
+            <Link href="/guides/deposit-hold" className="text-emerald-400 hover:underline">
               Deposit hold add-on →
-            </a>
+            </Link>
+          </li>
+          <li>
+            <Link href="/guides/missed-call-recovery" className="text-emerald-400 hover:underline">
+              Missed call build guide →
+            </Link>
           </li>
           <li>
             <Link href="/playbooks/missed-call-recovery" className="text-emerald-400 hover:underline">

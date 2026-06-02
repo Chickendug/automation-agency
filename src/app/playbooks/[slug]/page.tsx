@@ -56,26 +56,16 @@ export default async function PlaybookDetailPage({ params }: Props) {
             <ul className="mt-4 space-y-2 text-sm">
               {playbook.buildGuidePath && (
                 <li>
-                  <a
-                    href={playbook.buildGuidePath}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-emerald-400 hover:underline"
-                  >
+                  <Link href={playbook.buildGuidePath} className="text-emerald-400 hover:underline">
                     Full build guide →
-                  </a>
+                  </Link>
                 </li>
               )}
               {playbook.addonGuidePath && (
                 <li>
-                  <a
-                    href={playbook.addonGuidePath}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="text-emerald-400 hover:underline"
-                  >
+                  <Link href={playbook.addonGuidePath} className="text-emerald-400 hover:underline">
                     Deposit hold add-on →
-                  </a>
+                  </Link>
                 </li>
               )}
               <li>

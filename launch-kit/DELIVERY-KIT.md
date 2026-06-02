@@ -19,13 +19,13 @@
 
 | Package | Guide | Playbook in app |
 |---------|-------|-----------------|
-| Missed Call Recovery | `/docs/missed-call-recovery-build.md` | `/playbooks/missed-call-recovery` |
-| Appointment Reminders | `/docs/appointment-reminders-build.md` | `/playbooks/appointment-reminders` |
-| Deposit hold add-on | `/docs/deposit-hold-addon.md` | (add-on to appointments) |
+| Missed Call Recovery | `/guides/missed-call-recovery` | `/playbooks/missed-call-recovery` |
+| Appointment Reminders | `/guides/appointment-reminders` | `/playbooks/appointment-reminders` |
+| Deposit hold add-on | `/guides/deposit-hold` | (add-on to appointments) |
 | Lead Follow-Up | `/playbooks/lead-follow-up` | steps in app |
 | Reviews | `/playbooks/review-reputation` | steps in app |
 
-Open guides on live site: `https://YOUR-URL.vercel.app/docs/appointment-reminders-build.md`
+Open guides on live site: `/guides/appointment-reminders`
 
 ---
 

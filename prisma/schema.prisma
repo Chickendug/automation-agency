@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Lead {
+  id             String    @id @default(cuid())
+  businessName   String
+  phone          String?
+  email          String?
+  website        String?
+  address        String?
+  city           String?
+  state          String?
+  niche          String?
+  rating         Float?
+  reviewCount    Int?
+  googlePlaceId  String?   @unique
+  callStatus     String    @default("not_called")
+  painSignals           String?
+  primaryWeakness       String?
+  recommendedPackageId  String?
+  weaknessScore         Int?
+  pitchHook             String?
+  notes          String?
+  source         String    @default("manual")
+  lastCalledAt   DateTime?
+  callbackAt     DateTime?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  callLogs       CallLog[]
+  client         Client?
+
+  @@index([callStatus])
+  @@index([niche, city])
+  @@index([callbackAt])
+  @@index([weaknessScore])
+  @@index([primaryWeakness])
+}
+
+model CallLog {
+  id        String   @id @default(cuid())
+  leadId    String
+  lead      Lead     @relation(fields: [leadId], references: [id], onDelete: Cascade)
+  outcome   String
+  notes     String?
+  createdAt DateTime @default(now())
+
+  @@index([leadId])
+}
+
+model Client {
+  id                   String    @id @default(cuid())
+  leadId               String?   @unique
+  lead                 Lead?     @relation(fields: [leadId], references: [id])
+  businessName         String
+  contactName          String?
+  phone                String?
+  email                String?
+  packageId            String?
+  packageName          String?
+  status               String    @default("prospect")
+  setupFee             Int       @default(0)
+  monthlyFee           Int       @default(0)
+  setupPaymentStatus   String    @default("pending")
+  monthlyPaymentStatus String    @default("n/a")
+  monthlyBillingDay    Int?
+  nextMonthlyDueAt     DateTime?
+  lastMonthlyPaidAt    DateTime?
+  setupPaidAt          DateTime?
+  setupPaidAmount      Int?
+  lastPaymentRequestAt DateTime?
+  lastMonthlyRequestAt DateTime?
+  stripeSessionId      String?
+  notes                String?
+  startedAt            DateTime?
+  createdAt            DateTime  @default(now())
+  updatedAt            DateTime  @updatedAt
+  payments             Payment[]
+
+  @@index([status])
+  @@index([setupPaymentStatus])
+}
+
+model Payment {
+  id          String   @id @default(cuid())
+  clientId    String
+  client      Client   @relation(fields: [clientId], references: [id], onDelete: Cascade)
+  type           String
+  amount         Int
+  status         String   @default("pending")
+  method         String?
+  externalId     String?
+  billingPeriod  String?
+  notes          String?
+  paidAt         DateTime?
+  createdAt      DateTime @default(now())
+
+  @@index([clientId])
+  @@index([billingPeriod])
+}
+
+model AgencySettings {
+  id                   String   @id @default("default")
+  agencyName           String   @default("Your Automation Agency")
+  yourName             String?
+  yourPhone            String?
+  yourEmail            String?
+  defaultNiche         String   @default("HVAC / plumbing")
+  defaultCity          String?
+  defaultPackageId     String   @default("missed-call-recovery")
+  onboardingDone       Boolean  @default(false)
+  stripePaymentLinkSetup    String?
+  stripePaymentLinkMonthly  String?
+  paypalEmail          String?
+  venmoHandle          String?
+  zellePhone           String?
+  bankTransferNotes    String?
+  invoicePrefix        String   @default("INV")
+  collectTax           Boolean  @default(false)
+  updatedAt            DateTime @updatedAt
+}

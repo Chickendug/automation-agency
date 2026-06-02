@@ -1,0 +1,61 @@
+================================================================================
+AGENCY OS — MASTER DIAL SCRIPT (read aloud on every call)
+================================================================================
+Fill in: YOUR NAME | NICHE | BUSINESS NAME on the call
+Better version with auto-fill: http://localhost:3000/dial
+================================================================================
+
+--- 1. OPENING (10 seconds) ---
+
+Hi, is this [BUSINESS NAME]?
+
+Great — my name is [YOUR NAME], I'll be quick.
+
+I help [NICHE] stop losing jobs when the phone rings and nobody can pick up.
+
+--- 2. ONE QUESTION (pause — let them answer) ---
+
+When you're on a job or with a customer — do most calls go to voicemail?
+
+--- 3A. IF YES or "sometimes" ---
+
+That's what we fix. We install a system that texts them back in under a minute
+and follows up automatically — so you don't lose the lead.
+
+It's done-for-you — we build it in about 2 days.
+
+Would a quick 10-minute demo Tuesday or Thursday morning be crazy?
+
+--- 3B. IF "how much?" ---
+
+Setup is about fifteen hundred one time, then around four hundred a month
+to run and support it.
+
+Most shops make that back from one extra job.
+
+Worth a 10-minute demo before you decide anything?
+
+--- 3C. IF NOT INTERESTED ---
+
+Totally fair. Mind if I text you a 30-second video — in case timing's
+better next month?
+
+What's the best cell for that?
+
+--- 3D. IF GATEKEEPER ---
+
+Who handles operations or the phones for the owner?
+
+Can I leave my name? It's about automatic text follow-up when calls are missed.
+
+--- 3E. IF "send info" ---
+
+I'll keep it shorter than email — 10 minutes on Zoom and you'll know if it fits.
+
+What's better — morning or after lunch?
+
+================================================================================
+VOICEMAIL (if no answer):
+Hi, this is [YOUR NAME] — I help local [NICHE] recover missed calls with
+automated text follow-up. Call me at [YOUR PHONE] or I'll try once tomorrow. Thanks!
+================================================================================

@@ -1,0 +1,26 @@
+================================================================================
+  AGENCY OS — YOU'RE READY. READ THIS FIRST.
+================================================================================
+
+1. Open PowerShell:
+
+   cd C:\Users\jeden\Projects\automation-agency
+   npm run dev
+
+2. Browser:  http://localhost:3000/start
+
+3. Settings → your REAL name + phone + city
+
+4. Dial:     http://localhost:3000/dial     (READ THIS WHILE CALLING)
+
+5. Payments: http://localhost:3000/payments   (Stripe + Zelle — do once)
+5b. Monthly:  http://localhost:3000/billing  (every month — collect MRR)
+6. Calls:    http://localhost:3000/leads/call   (10 leads already loaded)
+
+PRINTABLE SCRIPT:  launch-kit\MASTER-DIAL-SCRIPT.txt
+
+TODAY: 80 dials. 3 interested. 1 demo booked.
+
+You don't build anything today — only dial.
+
+================================================================================

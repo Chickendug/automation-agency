@@ -60,6 +60,23 @@ function splitSqlStatements(sql) {
   return statements;
 }
 
+function normalizeStatement(statement) {
+  return statement
+    .split("\n")
+    .map((line) => {
+      const trimmed = line.trim();
+      if (trimmed.startsWith("--")) return "";
+      return line;
+    })
+    .join("\n")
+    .trim();
+}
+
+function shouldSkipStatement(statement) {
+  const s = statement.trim().toUpperCase();
+  return s.startsWith("PRAGMA ");
+}
+
 function checksum(content) {
   return createHash("sha256").update(content).digest("hex");
 }
@@ -119,7 +136,9 @@ async function run() {
 
     const statements = splitSqlStatements(sql);
     console.log(`Applying migration ${name} (${statements.length} statements)...`);
-    for (const statement of statements) {
+    for (const rawStatement of statements) {
+      const statement = normalizeStatement(rawStatement);
+      if (!statement || shouldSkipStatement(statement)) continue;
       await client.execute(statement);
     }
     await client.execute({

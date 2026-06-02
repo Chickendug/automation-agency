@@ -8,7 +8,6 @@ import {
   DAILY_SCHEDULE,
 } from "@/lib/data/scripts-full";
 import { fillTemplate } from "@/lib/script-engine";
-import { getPackage } from "@/lib/data/packages";
 
 export default function ToolkitPage() {
   const [agreementCtx, setAgreementCtx] = useState({
@@ -28,8 +27,6 @@ export default function ToolkitPage() {
     setupFee: `$${agreementCtx.setup}`,
     monthlyFee: `$${agreementCtx.monthly}`,
   });
-
-  const pkg = getPackage("missed-call-recovery");
 
   return (
     <div className="max-w-3xl">
@@ -102,18 +99,32 @@ export default function ToolkitPage() {
       </section>
 
       <section className="mt-10 rounded-xl border border-zinc-800 bg-zinc-950 p-5">
-        <h2 className="font-semibold text-white">Default package reference</h2>
-        {pkg && (
-          <p className="mt-2 text-sm text-zinc-400">
-            {pkg.name}: ${pkg.setupFee} setup + ${pkg.monthlyFee}/mo — {pkg.deliveryDays} days delivery
-          </p>
-        )}
-        <Link
-          href="/playbooks/missed-call-recovery"
-          className="mt-3 inline-block text-sm text-emerald-400 hover:underline"
-        >
-          Open build guide (after client pays) →
-        </Link>
+        <h2 className="font-semibold text-white">Delivery guides (after client pays)</h2>
+        <p className="mt-2 text-sm text-zinc-400">
+          Make.com + Twilio step-by-step. Complete kickoff form first.
+        </p>
+        <ul className="mt-4 space-y-2 text-sm">
+          <li>
+            <Link href="/playbooks/appointment-reminders" className="text-emerald-400 hover:underline">
+              Appointment Reminders playbook →
+            </Link>
+          </li>
+          <li>
+            <a href="/docs/appointment-reminders-build.md" className="text-emerald-400 hover:underline">
+              Appointment build guide (full) →
+            </a>
+          </li>
+          <li>
+            <a href="/docs/deposit-hold-addon.md" className="text-emerald-400 hover:underline">
+              Deposit hold add-on →
+            </a>
+          </li>
+          <li>
+            <Link href="/playbooks/missed-call-recovery" className="text-emerald-400 hover:underline">
+              Missed Call Recovery playbook →
+            </Link>
+          </li>
+        </ul>
       </section>
 
       <section className="mt-10">

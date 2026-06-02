@@ -59,6 +59,143 @@ What's better — morning or after lunch?`,
   ],
 };
 
+/** They texted or called you back (e.g. after your outreach). */
+export const CALLBACK_INBOUND_SCRIPT = {
+  title: "Callback — they called you",
+  sections: [
+    {
+      id: "opening",
+      label: "1. Opening (they initiated)",
+      text: `Hey [Business Name], thanks for calling/texting back — it's [Your Name].
+
+Quick context: I reached out about speed-to-lead — making sure Zillow, Facebook, and website leads get a reply in under a minute, not hours later.`,
+    },
+    {
+      id: "question",
+      label: "2. One question",
+      text: `When a new buyer or seller lead comes in today — who follows up first, and how fast does that usually happen?`,
+    },
+    {
+      id: "yes",
+      label: '3A. If slow / manual / "depends"',
+      text: `That's the gap we fix. Instant text + a short nurture sequence so you're first while they're still hot — you already do auto text on missed calls, which is smart; this is for *new* portal leads before they talk to three agents.
+
+Worth a 15-minute screen-share this week — Tuesday or Thursday morning?`,
+    },
+    {
+      id: "cost",
+      label: '3B. If "how much?"',
+      text: `Setup's about twelve hundred one time, then around three hundred a month to run it.
+
+One extra deal pays for the year. Want to see it on a quick demo?`,
+    },
+    {
+      id: "no",
+      label: "3C. If not a fit",
+      text: `No worries — appreciate you getting back to me. If timing's better later, I'll check in once. Good luck out there.`,
+    },
+  ],
+};
+
+/** Cold outbound when weakness is slow lead follow-up (realtors, etc.). */
+export const LEAD_FOLLOWUP_OUTBOUND_SCRIPT = {
+  title: "Outbound — speed-to-lead (realtors / forms)",
+  sections: [
+    {
+      id: "opening",
+      label: "1. Opening",
+      text: `Hi, is this [Business Name]?
+
+[Your Name] — I'll be quick. I help [niche] with speed-to-lead: when someone hits your site or a Zillow/FB lead form, they get a text back in under 60 seconds.`,
+    },
+    {
+      id: "question",
+      label: "2. One question",
+      text: `When those leads come in — are you usually first to reply, or does it sometimes sit until later in the day?`,
+    },
+    {
+      id: "yes",
+      label: '3A. If slow / sometimes / after hours',
+      text: `We automate that first touch plus a few follow-ups so competitors don't beat you to the conversation.
+
+Done-for-you — live in about 2 days. Ten-minute demo this week — does morning or afternoon work better?`,
+    },
+    {
+      id: "cost",
+      label: '3B. If "how much?"',
+      text: `About twelve hundred setup, then three hundred a month.
+
+One closed side pays for it. Open to a quick demo?`,
+    },
+    {
+      id: "no",
+      label: "3C. If NOT interested",
+      text: `Fair enough. Mind if I text a 30-second overview — in case Q4 gets busier?
+
+Best cell for that?`,
+    },
+  ],
+};
+
+/** Cold outbound for appointment / no-show niche (dental, med spa, salon). */
+export const APPOINTMENT_REMINDER_OUTBOUND_SCRIPT = {
+  title: "Outbound — no-shows & reminders (dental / appointments)",
+  sections: [
+    {
+      id: "opening",
+      label: "1. Opening",
+      text: `Hi, is this [Business Name]?
+
+[Your Name] — I'll be quick. I help [niche] cut no-shows with text reminders patients actually reply to — confirm, reschedule, and follow up if they don't show.`,
+    },
+    {
+      id: "question",
+      label: "2. One question",
+      text: `How many no-shows or last-minute cancels do you get in a typical week — and what happens automatically after someone doesn't show?`,
+    },
+    {
+      id: "yes",
+      label: '3A. If "we have reminders" or "still a problem"',
+      text: `That's common — most offices have email or one text from their software, but no confirm-by-reply and no recovery after a no-show. We layer SMS on top: 24h + 2h reminders, YES/RESCHEDULE replies, and a text 30 minutes after a missed appointment.
+
+Worth a 15-minute demo — Tuesday or Thursday morning?`,
+    },
+    {
+      id: "cost",
+      label: '3B. If "how much?"',
+      text: `About a thousand setup, then around three hundred a month. Some offices add a new-patient deposit link later — we can talk about that on the demo. Open to 15 minutes this week?`,
+    },
+    {
+      id: "no",
+      label: "3C. If NOT interested",
+      text: `Fair enough. Mind if I text a 30-second overview — in case no-show season picks up?
+
+Best cell for that?`,
+    },
+  ],
+};
+
+export const APPOINTMENT_DEMO_SCRIPT = `DEMO (15 min) — [Business Name] — Appointment Reminders
+
+1. RECAP (2 min)
+"You said no-shows are still costing you chairs even with reminders. Is that still the main headache?"
+
+2. SHOW THE FLOW (6 min)
+"Patient has appointment tomorrow → they get this text 24 hours out:"
+→ Read 24h SMS on screen
+
+"They reply YES — your front desk gets alerted. RESCHEDULE — you get their number to call back."
+"Day of — 2-hour reminder."
+"If they no-show → 30 minutes later: 'Want to reschedule? Reply YES.'"
+
+3. VS WHAT THEY HAVE (3 min)
+"We're not replacing Dentrix — we add SMS confirm + recovery your current system usually skips."
+
+4. CLOSE (4 min)
+"Appointment Reminder System — [setup] setup, [monthly]/month includes support.
+Optional later: new-patient deposit link by text (+$500 setup).
+I'll send Stripe link for setup — once that clears, live in 2–3 days. Send link today?"`;
+
 export const OBJECTION_HANDLERS: { objection: string; response: string }[] = [
   {
     objection: "We already have someone answering phones",
@@ -89,6 +226,21 @@ export const OBJECTION_HANDLERS: { objection: string; response: string }[] = [
     objection: "Call me back later",
     response:
       "Sure — what day works? I'll put you down for [day] and send a calendar invite so it actually happens.",
+  },
+  {
+    objection: "We already have reminders",
+    response:
+      "Totally fair — most offices do. Quick question: when someone no-shows, what happens automatically after? And can patients confirm by text, or does front desk still chase? We usually add SMS confirm + recovery on top — not rip and replace.",
+  },
+  {
+    objection: "We use Dentrix / Open Dental for that",
+    response:
+      "Perfect — keep that. This sits on top: SMS 24h and 2h before, YES/RESCHEDULE replies, and a text 30 min after a no-show. PMS email reminders and patient texts are different channels. 15-minute demo to see if it's actually different?",
+  },
+  {
+    objection: "Can you do deposits / no-show fees?",
+    response:
+      "Yes — Phase 1 is reminders + recovery. Phase 2 we add a Stripe deposit link by text when they book — usually fifty bucks for new patients. We don't auto-charge no-show fees Day 1; deposit to hold the slot is the cleanest start.",
   },
 ];
 
@@ -131,6 +283,22 @@ export const SMS_TEMPLATES = [
     name: "Follow-up #2 (24 hours)",
     body: "Last check-in from [Business Name] — happy to help when you're ready. Reply STOP to opt out.",
   },
+  {
+    name: "Appt — 24h confirm",
+    body: "Hi [Name], confirming your appointment at [Business Name] tomorrow at [Time]. Reply YES to confirm or RESCHEDULE to change. Reply STOP to opt out.",
+  },
+  {
+    name: "Appt — 2h reminder",
+    body: "Reminder: your appointment at [Business Name] is today at [Time]. Reply C to confirm. Reply STOP to opt out.",
+  },
+  {
+    name: "Appt — no-show recovery",
+    body: "Hi [Name], we missed you at [Business Name] today. Want to reschedule? Reply YES. Reply STOP to opt out.",
+  },
+  {
+    name: "Appt — deposit request",
+    body: "Hi [Name]! To hold your spot at [Business Name] on [Date], pay your $[Amount] deposit here: [StripeLink]. Reply STOP to opt out.",
+  },
 ];
 
 export const EMAIL_TEMPLATES = [
@@ -168,6 +336,24 @@ Available for kickoff: [offer 2 times]
 
 [Your Name]
 [Agency Name] | [Your Phone]`,
+  },
+  {
+    name: "After interested call — appointments",
+    subject: "Next step — [Business Name] + appointment reminders",
+    body: `Hi [Contact],
+
+Great speaking earlier — [Your Name] here.
+
+As discussed:
+• Problem: no-shows / last-minute cancels despite existing reminders
+• Solution: SMS confirm (24h + 2h) + reply YES/RESCHEDULE + no-show recovery text
+• Investment: $1,000 setup + $297/month
+• Timeline: live in 2–3 business days after setup
+
+Open for a 15-min demo this week? I have [time 1] or [time 2].
+
+[Your Name]
+[Your Phone]`,
   },
   {
     name: "Proposal send",

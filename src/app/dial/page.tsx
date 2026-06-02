@@ -2,7 +2,13 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MASTER_DIAL_SCRIPT, OBJECTION_HANDLERS } from "@/lib/data/scripts-full";
+import {
+  APPOINTMENT_REMINDER_OUTBOUND_SCRIPT,
+  CALLBACK_INBOUND_SCRIPT,
+  LEAD_FOLLOWUP_OUTBOUND_SCRIPT,
+  MASTER_DIAL_SCRIPT,
+  OBJECTION_HANDLERS,
+} from "@/lib/data/scripts-full";
 import { fillTemplate } from "@/lib/script-engine";
 import { getPackage } from "@/lib/data/packages";
 
@@ -16,9 +22,19 @@ type Settings = {
   defaultPackageId: string;
 };
 
+type ScriptMode = "outbound_missed" | "callback" | "outbound_lead" | "outbound_appointments";
+
+const SCRIPT_OPTIONS: { value: ScriptMode; label: string }[] = [
+  { value: "outbound_missed", label: "Outbound — missed calls" },
+  { value: "outbound_lead", label: "Outbound — speed-to-lead" },
+  { value: "outbound_appointments", label: "Outbound — no-shows / dental" },
+  { value: "callback", label: "Callback — they called you" },
+];
+
 export default function DialScriptPage() {
   const [settings, setSettings] = useState<Settings | null>(null);
   const [businessName, setBusinessName] = useState("");
+  const [scriptMode, setScriptMode] = useState<ScriptMode>("outbound_missed");
   const [showObjections, setShowObjections] = useState(false);
   const [fontSize, setFontSize] = useState<"lg" | "xl" | "2xl">("xl");
 
@@ -26,9 +42,37 @@ export default function DialScriptPage() {
     fetch("/api/settings")
       .then((r) => r.json())
       .then(setSettings);
+    const params = new URLSearchParams(window.location.search);
+    const name = params.get("name");
+    const mode = params.get("mode");
+    if (name) setBusinessName(name);
+    if (
+      mode === "callback" ||
+      mode === "outbound_lead" ||
+      mode === "outbound_missed" ||
+      mode === "outbound_appointments"
+    ) {
+      setScriptMode(mode);
+    }
   }, []);
 
-  const pkg = settings ? getPackage(settings.defaultPackageId) : null;
+  const packageId =
+    scriptMode === "outbound_lead" || scriptMode === "callback"
+      ? "lead-follow-up"
+      : scriptMode === "outbound_appointments"
+        ? "appointment-reminders"
+        : settings?.defaultPackageId ?? "missed-call-recovery";
+
+  const pkg = settings ? getPackage(packageId) : null;
+
+  const activeScript =
+    scriptMode === "callback"
+      ? CALLBACK_INBOUND_SCRIPT
+      : scriptMode === "outbound_lead"
+        ? LEAD_FOLLOWUP_OUTBOUND_SCRIPT
+        : scriptMode === "outbound_appointments"
+          ? APPOINTMENT_REMINDER_OUTBOUND_SCRIPT
+          : MASTER_DIAL_SCRIPT;
 
   const ctx = {
     yourName: settings?.yourName || "Your Name",
@@ -54,7 +98,18 @@ export default function DialScriptPage() {
           </Link>
           <span className="text-sm font-medium text-emerald-400">DIAL SCRIPT — read aloud</span>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex flex-wrap items-center justify-end gap-3">
+          <select
+            value={scriptMode}
+            onChange={(e) => setScriptMode(e.target.value as ScriptMode)}
+            className="max-w-[14rem] rounded-lg border border-zinc-700 bg-zinc-900 px-2 py-1.5 text-sm sm:max-w-xs"
+          >
+            {SCRIPT_OPTIONS.map((o) => (
+              <option key={o.value} value={o.value}>
+                {o.label}
+              </option>
+            ))}
+          </select>
           <input
             placeholder="Business name on this call"
             value={businessName}
@@ -90,11 +145,11 @@ export default function DialScriptPage() {
         {!showObjections ? (
           <div className="mx-auto max-w-3xl space-y-10">
             <p className="text-center text-sm text-zinc-500">
-              Calling as <strong className="text-white">{ctx.yourName}</strong> ·{" "}
+              {activeScript.title} · <strong className="text-white">{ctx.yourName}</strong> ·{" "}
               {ctx.niche}
               {settings?.defaultCity ? ` · ${settings.defaultCity}` : ""}
             </p>
-            {MASTER_DIAL_SCRIPT.sections.map((section) => (
+            {activeScript.sections.map((section) => (
               <section key={section.id}>
                 <h2 className="mb-3 text-sm font-bold uppercase tracking-wider text-emerald-500">
                   {section.label}

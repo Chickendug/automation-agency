@@ -46,6 +46,46 @@ export default async function PlaybookDetailPage({ params }: Props) {
             ))}
           </ul>
         </section>
+
+        {(playbook.buildGuidePath || playbook.addonGuidePath) && (
+          <section className="rounded-xl border border-emerald-900/50 bg-emerald-950/20 p-5">
+            <h2 className="font-semibold text-emerald-400">Build guides</h2>
+            <p className="mt-1 text-sm text-zinc-400">
+              Step-by-step Make.com + Twilio instructions. Use after setup fee is paid.
+            </p>
+            <ul className="mt-4 space-y-2 text-sm">
+              {playbook.buildGuidePath && (
+                <li>
+                  <a
+                    href={playbook.buildGuidePath}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-emerald-400 hover:underline"
+                  >
+                    Full build guide →
+                  </a>
+                </li>
+              )}
+              {playbook.addonGuidePath && (
+                <li>
+                  <a
+                    href={playbook.addonGuidePath}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-emerald-400 hover:underline"
+                  >
+                    Deposit hold add-on →
+                  </a>
+                </li>
+              )}
+              <li>
+                <span className="text-zinc-500">
+                  Kickoff form: see launch-kit/CLIENT-KICKOFF-QUESTIONNAIRE.md in repo
+                </span>
+              </li>
+            </ul>
+          </section>
+        )}
       </div>
     </div>
   );

@@ -8,6 +8,10 @@ export default function PlaybooksPage() {
       <p className="mt-1 text-zinc-400">
         Step-by-step guides to fulfill each package after a client says yes.
       </p>
+      <p className="mt-2 text-sm text-zinc-500">
+        Delivery kit index + kickoff form:{" "}
+        <code className="rounded bg-zinc-900 px-1">launch-kit/DELIVERY-KIT.md</code>
+      </p>
 
       <div className="mt-8 space-y-4">
         {PLAYBOOKS.map((pb) => (

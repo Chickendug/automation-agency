@@ -5,6 +5,8 @@ export type Playbook = {
   estimatedHours: number;
   steps: { title: string; detail: string }[];
   checklist: string[];
+  buildGuidePath?: string;
+  addonGuidePath?: string;
 };
 
 export const PLAYBOOKS: Playbook[] = [
@@ -13,6 +15,7 @@ export const PLAYBOOKS: Playbook[] = [
     title: "Deliver: Missed Call Recovery System",
     packageId: "missed-call-recovery",
     estimatedHours: 6,
+    buildGuidePath: "/docs/missed-call-recovery-build.md",
     steps: [
       {
         title: "Kickoff (30 min)",
@@ -121,6 +124,8 @@ export const PLAYBOOKS: Playbook[] = [
     title: "Deliver: Appointment Reminder System",
     packageId: "appointment-reminders",
     estimatedHours: 5,
+    buildGuidePath: "/docs/appointment-reminders-build.md",
+    addonGuidePath: "/docs/deposit-hold-addon.md",
     steps: [
       {
         title: "Calendar connect",

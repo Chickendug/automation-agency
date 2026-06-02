@@ -54,6 +54,15 @@ export default function LeadsPage() {
     e.target.value = "";
   }
 
+  async function updateStatus(leadId: string, callStatus: string) {
+    await fetch(`/api/leads/${leadId}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ callStatus }),
+    });
+    load();
+  }
+
   async function reanalyzeAll() {
     setAnalyzing(true);
     await fetch("/api/leads/analyze", {
@@ -134,7 +143,15 @@ export default function LeadsPage() {
           <tbody>
             {leads.map((lead) => (
               <tr key={lead.id} className="border-b border-zinc-800/50 hover:bg-zinc-950/50">
-                <td className="px-4 py-3 font-medium text-white">{lead.businessName}</td>
+                <td className="px-4 py-3 font-medium text-white">
+                  {lead.businessName}
+                  <Link
+                    href={`/dial?mode=callback&name=${encodeURIComponent(lead.businessName)}`}
+                    className="ml-2 text-xs font-normal text-emerald-500 hover:underline"
+                  >
+                    Script
+                  </Link>
+                </td>
                 <td className="px-4 py-3">
                   {lead.phone ? (
                     <a href={telLink(lead.phone) ?? "#"} className="text-emerald-400 hover:underline">
@@ -152,7 +169,18 @@ export default function LeadsPage() {
                 </td>
                 <td className="px-4 py-3 text-zinc-400">{lead.city ?? "—"}</td>
                 <td className="px-4 py-3">
-                  <CallStatusBadge status={lead.callStatus} />
+                  <select
+                    value={lead.callStatus}
+                    onChange={(e) => updateStatus(lead.id, e.target.value)}
+                    className="rounded-lg border border-zinc-700 bg-zinc-950 px-2 py-1 text-xs text-white"
+                    aria-label={`Status for ${lead.businessName}`}
+                  >
+                    {CALL_STATUSES.map((s) => (
+                      <option key={s.value} value={s.value}>
+                        {s.label}
+                      </option>
+                    ))}
+                  </select>
                 </td>
                 <td className="px-4 py-3 text-zinc-500">{lead._count.callLogs}</td>
               </tr>

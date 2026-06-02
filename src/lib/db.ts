@@ -2,11 +2,12 @@ import "dotenv/config";
 import { PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
 import { PrismaLibSql } from "@prisma/adapter-libsql";
 import { PrismaClient } from "@/generated/prisma/client";
+import { getDatabaseUrl } from "@/lib/database-url";
 
 const globalForPrisma = globalThis as unknown as { prisma: PrismaClient };
 
 function createPrisma() {
-  const url = process.env.DATABASE_URL ?? "file:./dev.db";
+  const url = getDatabaseUrl();
 
   if (url.startsWith("libsql:")) {
     const adapter = new PrismaLibSql({ url });

@@ -65,7 +65,18 @@ npm run seed
 
 ---
 
-## Step 4 — Use on your phone
+## Step 4 — Phone setup (read this)
+
+Full checklist: `launch-kit/PHONE-VERCEL-SETUP.md`
+
+**Must do:**
+1. Deployment Protection → **Off** for production
+2. Seed or import leads on the **live** site (laptop SQLite ≠ phone)
+3. Add to Home Screen → use bottom **Call** tab
+
+---
+
+## Step 5 — Use on your phone
 
 1. Open **Safari** (iPhone) or **Chrome** (Android)
 2. Go to your Vercel URL

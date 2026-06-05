@@ -12,6 +12,7 @@
     "db:studio": "prisma studio",
     "postinstall": "prisma generate",
     "seed": "tsx prisma/seed.ts",
+    "db:seed-turso": "powershell -ExecutionPolicy Bypass -File scripts/seed-turso.ps1",
     "setup": "powershell -ExecutionPolicy Bypass -File scripts/setup.ps1"
   },
   "prisma": {

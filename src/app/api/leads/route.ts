@@ -4,9 +4,12 @@ import { normalizePhone } from "@/lib/places";
 
 export async function GET(req: NextRequest) {
   const status = req.nextUrl.searchParams.get("status");
+  const callable = req.nextUrl.searchParams.get("callable") === "true";
   const niche = req.nextUrl.searchParams.get("niche");
   const q = req.nextUrl.searchParams.get("q");
   const sort = req.nextUrl.searchParams.get("sort");
+
+  const CALLABLE_STATUSES = ["not_called", "no_answer", "voicemail", "callback"];
 
   const orderBy =
     sort === "weakness"
@@ -15,7 +18,11 @@ export async function GET(req: NextRequest) {
 
   const leads = await prisma.lead.findMany({
     where: {
-      ...(status ? { callStatus: status } : {}),
+      ...(callable
+        ? { callStatus: { in: CALLABLE_STATUSES } }
+        : status
+          ? { callStatus: status }
+          : {}),
       ...(niche ? { niche } : {}),
       ...(q
         ? {

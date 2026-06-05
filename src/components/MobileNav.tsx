@@ -18,7 +18,7 @@ export function MobileNav() {
   if (pathname.startsWith("/dial")) return null;
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-zinc-800 bg-zinc-950/95 pb-[env(safe-area-inset-bottom)] backdrop-blur md:hidden">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-zinc-800 bg-zinc-950/95 pb-[env(safe-area-inset-bottom)] backdrop-blur lg:hidden">
       <ul className="flex justify-around">
         {tabs.map((tab) => {
           const active = pathname.startsWith(tab.href);

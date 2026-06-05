@@ -25,7 +25,7 @@ export function Nav() {
   const pathname = usePathname();
 
   return (
-    <nav className="hidden w-56 shrink-0 flex-col border-r border-zinc-800 bg-zinc-950 p-4 md:flex">
+    <nav className="hidden w-56 shrink-0 flex-col border-r border-zinc-800 bg-zinc-950 p-4 lg:flex">
       <div className="mb-8">
         <p className="text-xs font-medium uppercase tracking-wider text-emerald-500">
           Agency OS

@@ -22,6 +22,10 @@ export const metadata: Metadata = {
     title: "Agency OS",
     statusBarStyle: "black-translucent",
   },
+  other: {
+    "mobile-web-app-capable": "yes",
+    "format-detection": "telephone=yes",
+  },
 };
 
 export const viewport = {

@@ -33,7 +33,7 @@ export default function CallModePage() {
 
   const loadQueue = useCallback(() => {
     setLoading(true);
-    fetch("/api/leads?status=not_called&sort=weakness")
+    fetch("/api/leads?callable=true&sort=weakness")
       .then((r) => r.json())
       .then((leads: Lead[]) => {
         const withPhone = leads.filter((l) => l.phone);
@@ -89,10 +89,18 @@ export default function CallModePage() {
     return (
       <div>
         <h1 className="text-2xl font-bold text-white">Call mode</h1>
-        <p className="mt-4 text-zinc-400">No uncalled leads with phone numbers.</p>
-        <Link href="/leads/find" className="mt-4 inline-block text-emerald-400 hover:underline">
-          Scan for weaknesses →
-        </Link>
+        <p className="mt-4 text-zinc-400">
+          No callable leads (not called, no answer, voicemail, or callback). Scan or import on this
+          site — laptop data does not sync unless you use the same Vercel URL + Turso.
+        </p>
+        <div className="mt-4 flex flex-wrap gap-3">
+          <Link href="/leads/find" className="text-emerald-400 hover:underline">
+            Find leads →
+          </Link>
+          <Link href="/leads" className="text-emerald-400 hover:underline">
+            Import CSV →
+          </Link>
+        </div>
       </div>
     );
   }
@@ -141,13 +149,15 @@ export default function CallModePage() {
           <p className="mt-3 text-sm text-zinc-500">Signals: {current.painSignals}</p>
         )}
 
-        {tel && (
+        {tel ? (
           <a
             href={tel}
-            className="mt-6 flex w-full items-center justify-center rounded-xl bg-emerald-600 py-4 text-lg font-semibold text-white hover:bg-emerald-500"
+            className="mt-6 flex min-h-14 w-full touch-manipulation items-center justify-center rounded-xl bg-emerald-600 py-4 text-xl font-semibold text-white active:bg-emerald-700"
           >
-            Tap to dial
+            📞 Tap to dial
           </a>
+        ) : (
+          <p className="mt-6 text-center text-sm text-amber-400">No phone number on this lead.</p>
         )}
 
         <textarea

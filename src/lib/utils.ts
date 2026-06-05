@@ -17,8 +17,9 @@ export function formatPhone(phone: string | null | undefined): string {
 
 export function telLink(phone: string | null | undefined): string | null {
   if (!phone) return null;
-  const d = phone.replace(/\D/g, "");
-  if (d.length >= 10) return `tel:+1${d.length === 10 ? d : d}`;
+  let d = phone.replace(/\D/g, "");
+  if (d.length === 11 && d.startsWith("1")) d = d.slice(1);
+  if (d.length === 10) return `tel:+1${d}`;
   return null;
 }
 
